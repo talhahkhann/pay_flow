@@ -1,8 +1,6 @@
 # pay_flow
 A Payment web app 
 
-# pay_flow_backend
-
 ---
 
 ## 👥 Team Workflow (Important)
