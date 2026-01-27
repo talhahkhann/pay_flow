@@ -1,4 +1,4 @@
-import { Post } from './components/post/post';
+import { Post } from './components/Button/Button';
 
 const app = document.getElementById('app')!;
 
