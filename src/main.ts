@@ -1,9 +1,10 @@
-
-import Signup from './pages/auth/singup'
+import { Router } from "./router/router";
+import { routes } from "./router/routes";
 
 const app = document.getElementById('app')!;
 
+const router = new Router(routes);
 
-
-const Signup_page = Signup();
-app.appendChild(Signup_page)
+document.addEventListener("DOMContentLoaded", () => {
+  router.init();
+});
