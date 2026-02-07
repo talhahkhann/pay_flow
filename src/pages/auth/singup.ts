@@ -1,25 +1,30 @@
+import { registerUser } from "../../services/authService";
+import { setToken } from "../../utils/storage";
+
 export function initSignup() {
   const form = document.getElementById("signupForm") as HTMLFormElement;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const username = (document.getElementById("username") as HTMLInputElement).value;
+    const fullName = (document.getElementById("fullName") as HTMLInputElement).value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
     const password = (document.getElementById("password") as HTMLInputElement).value;
 
-    // Simple validation
-    if (!username || !email || !password) {
-      alert("All fields are required!");
-      return;
+    try {
+      const token = await registerUser({ fullName, email, password });
+
+      //  Save token using helper
+      setToken(token);
+
+      alert(" Registration successful!");
+
+      // Redirect
+      window.history.pushState({}, "", "/feed");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+
+    } catch (error: any) {
+      alert(error.message);
     }
-
-    // Normally here you would call your API
-    console.log("Signing up user:", { username, email, password });
-
-    alert(`Welcome, ${username}! Your account is created.`);
-
-    // Clear form
-    form.reset();
   });
 }
