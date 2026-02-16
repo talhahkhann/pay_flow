@@ -1,9 +1,6 @@
 import { defineConfig } from "vite";
-import string from "vite-plugin-string"; // ✅ CORRECT
-
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [string({
-    include: "**/*.html"
-  })]
+  plugins: [react()]
 });
